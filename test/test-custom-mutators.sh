@@ -111,7 +111,6 @@ test "1" = "`../afl-fuzz 2>/dev/null | grep -i 'without python' >/dev/null; echo
   INCOMPLETE=1
 }
 
-make -C ../utils/custom_mutators clean > /dev/null 2>&1
 rm -f test-custom-mutator test-custom-mutators
 
 . ./test-post.sh

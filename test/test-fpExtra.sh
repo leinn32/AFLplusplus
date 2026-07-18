@@ -3,9 +3,8 @@
 . ./test-pre.sh
 
 test -e ../afl-clang-fast -a -e ../split-switches-pass.so && {
-  $ECHO "$GREY[*] llvm_mode laf-intel/compcov testing splitting floating point types with Nan, infinity, minusZero"
-  for testcase in ./test-fp_minusZerocases.c ./test-fp_Infcases.c ./test-fp_NaNcases.c; do
-  #for testcase in ./test-fp_cases.c ./test-fp_Infcases.c ./test-fp_NaNcases.c ./test-fp_minusZerocases.c ; do
+  $ECHO "$GREY[*] llvm_mode laf-intel/compcov testing splitting floating point types with normal values, Nan, infinity, minusZero"
+  for testcase in ./test-fp_cases.c ./test-fp_minusZerocases.c ./test-fp_Infcases.c ./test-fp_NaNcases.c; do
     for I in float double "long double"; do
     #for I in double; do
       for BITS in 64 32 16 8; do

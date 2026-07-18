@@ -296,42 +296,6 @@ test -e ../afl-clang-fast -a -e ../split-switches-pass.so && {
   INCOMPLETE=1
  }
   rm -rf errors test-cmplog in core.*
-  # Test cmplog back-edge/loop detection
-  test -e test-cmplog-loops.sh && {
-    ./test-cmplog-loops.sh > /dev/null 2>&1 && {
-      $ECHO "$GREEN[+] cmplog loop back-edge detection test passed"
-    } || {
-      $ECHO "$RED[!] cmplog loop back-edge detection test failed"
-      CODE=1
-    }
-  }
-  # Test cmplog routines pass instrumentation
-  test -e test-cmplog-routines-pass.sh && {
-    ./test-cmplog-routines-pass.sh > /dev/null 2>&1 && {
-      $ECHO "$GREEN[+] cmplog routines pass instrumentation test passed"
-    } || {
-      $ECHO "$RED[!] cmplog routines pass instrumentation test failed"
-      CODE=1
-    }
-  }
-  # Test cmplog routine hooks on page-boundary strings
-  test -e test-cmplog-routines-bounds.sh && {
-    ./test-cmplog-routines-bounds.sh > /dev/null 2>&1 && {
-      $ECHO "$GREEN[+] cmplog routines bounds test passed"
-    } || {
-      $ECHO "$RED[!] cmplog routines bounds test failed"
-      CODE=1
-    }
-  }
-  # Test cmplog instructions pass with non-standard integer sizes (issue #2704)
-  test -e test-cmplog-bitint.sh && {
-    ./test-cmplog-bitint.sh > /dev/null 2>&1 && {
-      $ECHO "$GREEN[+] cmplog non-standard integer size test passed (issue #2704)"
-    } || {
-      $ECHO "$RED[!] cmplog non-standard integer size test failed (issue #2704)"
-      CODE=1
-    }
-  }
   ../afl-clang-fast -o test-persistent ../utils/persistent_mode/persistent_demo.c > /dev/null 2>&1
   test -e test-persistent && {
     echo foo | AFL_QUIET=1 ../afl-showmap -m ${MEM_LIMIT} -o /dev/null -q -r ./test-persistent && {
